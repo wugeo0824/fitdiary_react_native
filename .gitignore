@@ -110,3 +110,11 @@ buck-out/
 */fastlane/screenshots
 
 .vscode
+
+# TypeScript
+#
+lib/
+
+# Jest
+#
+.jest/

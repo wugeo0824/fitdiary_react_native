@@ -7,6 +7,10 @@
     "test": "jest"
   },
   "dependencies": {
+    "@firebase/app-types": "^0.1.0",
+    "@types/react-navigation": "^1.0.26",
+    "@types/react-redux": "^5.0.14",
+    "firebase": "^4.8.1",
     "react": "16.0.0",
     "react-native": "0.51.0",
     "react-native-elements": "^0.18.5",

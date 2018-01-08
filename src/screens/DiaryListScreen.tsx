@@ -1,6 +1,8 @@
 import * as React from 'react';
-import { Platform, StyleSheet, Text, View } from 'react-native';
+import { Platform, StyleSheet, Text, View, Alert } from 'react-native';
 import { Button } from 'react-native-elements';
+import * as firebase from 'firebase';
+import 'firebase/firestore';
 
 const instructions = Platform.select({
   ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
@@ -8,6 +10,32 @@ const instructions = Platform.select({
 });
 
 class DiaryListScreen extends React.Component<object, object> {
+  state = {
+    fittype: 'randome',
+  };
+
+  componentWillMount() {
+    firebase
+      .firestore()
+      .collection('fit-log')
+      .get()
+      .then((snapshot) => {
+        let display;
+        snapshot.forEach(item => {
+          display = item.data().type;
+        });
+
+        this.setState({
+          fittype: display,
+        });
+      })
+      .catch(err => {
+        this.setState({
+          fittype: err.message,
+        });
+      });
+  }
+
   render() {
     return (
       <View style={styles.container}>
@@ -19,8 +47,8 @@ class DiaryListScreen extends React.Component<object, object> {
           icon={{ name: 'home', size: 32 }}
           buttonStyle={{ backgroundColor: 'red', borderRadius: 10 }}
           textStyle={{ textAlign: 'center' }}
-          title={`Welcome to\nReact Native Elements`}
-          onPress={() => console.log('clicked')}
+          title={this.state.fittype}
+          onPress={() => this.props.navigation.goBack()}
         />
       </View>
     );

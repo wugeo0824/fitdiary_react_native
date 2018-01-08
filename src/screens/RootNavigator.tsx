@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 import { addNavigationHelpers, StackNavigator } from 'react-navigation';
-// import PropTypes from 'prop-types';
 
 import HomeScreen from './HomeScreen';
 import DiaryListScreen from './DiaryListScreen';
@@ -25,13 +24,8 @@ const AppWithNavigationState = ({ dispatch, nav }) => (
   <AppNavigator navigation={addNavigationHelpers({ dispatch, state: nav })} />
 );
 
-// AppWithNavigationState.propTypes = {
-//     dispatch: PropTypes.func.isRequired,
-//     nav: PropTypes.object.isRequired,
-//   };
+const mapStateToProps = state => ({
+  nav: state.nav,
+});
 
-  const mapStateToProps = state => ({
-    nav: state.nav,
-  });
-
-  export default connect(mapStateToProps)(AppWithNavigationState);
+export default connect(mapStateToProps)(AppWithNavigationState);

@@ -20,9 +20,14 @@ export const AppNavigator = StackNavigator({
   },
 });
 
-const AppWithNavigationState = ({ dispatch, nav }) => (
-  <AppNavigator navigation={addNavigationHelpers({ dispatch, state: nav })} />
-);
+export interface Props {
+  dispatch: () => {};
+  nav: any;
+}
+
+function AppWithNavigationState({ dispatch, nav }: Props) {
+  return <AppNavigator navigation={addNavigationHelpers({ dispatch, state: nav })} />;
+}
 
 const mapStateToProps = state => ({
   nav: state.nav,

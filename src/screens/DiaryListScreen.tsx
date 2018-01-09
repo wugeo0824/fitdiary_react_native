@@ -44,9 +44,8 @@ class DiaryListScreen extends React.Component<object, object> {
         <Text style={styles.instructions}>{instructions}</Text>
         <Button
           raised
-          icon={{ name: 'home', size: 32 }}
-          buttonStyle={{ backgroundColor: 'red', borderRadius: 10 }}
-          textStyle={{ textAlign: 'center' }}
+          // icon={{ name: 'home', size: 32 }}
+          buttonStyle={{ backgroundColor: 'blue' }}
           title={this.state.fittype}
           onPress={() => this.props.navigation.goBack()}
         />

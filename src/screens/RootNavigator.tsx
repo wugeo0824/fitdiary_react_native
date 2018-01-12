@@ -3,22 +3,28 @@ import { connect } from 'react-redux';
 import { addNavigationHelpers, StackNavigator, NavigationProp } from 'react-navigation';
 
 import HomeNavigator from './HomeNavigator';
-import DiaryListScreen from './DiaryListScreen';
+import RecordFormScreen from './RecordFormScreen';
 
-export const AppNavigator = StackNavigator({
-  Root: {
-    screen: HomeNavigator,
-    navigationOptions: {
-      header: null, // hides the header bar
+export const AppNavigator = StackNavigator(
+  {
+    Root: {
+      screen: HomeNavigator,
+      navigationOptions: {
+        header: null, // hides the header bar
+        headerBackTitle: 'Home'
+      },
+    },
+    Record: {
+      screen: RecordFormScreen,
+      navigationOptions: {
+        headerTitle: 'RECORD',
+      },
     },
   },
-  Record: {
-    screen: DiaryListScreen,
-    navigationOptions: {
-      headerTitle: 'Detail Screen',
-    },
+  {
+    mode: 'modal',
   },
-});
+);
 
 function AppWithNavigationState({ dispatch, nav }) {
   return <AppNavigator navigation={addNavigationHelpers<any>({ dispatch, state: nav })} />;
